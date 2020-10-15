@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/Distributor/fromRequest',[DistributorController::class, 'fromRequest'])->name("Distributor.fromRequest"); 
 Route::resource('Distributor', DistributorController::class);
+
+
+
+
 

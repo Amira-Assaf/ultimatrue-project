@@ -15,7 +15,6 @@ class DistributorController extends Controller
      */
     public function index()
     {
-        //
         //$countries=["a","b"]; 
         //$products=["p1","p2"]; 
         $distributors =distributor::where('active', 1)->where("status_id","3")
@@ -23,9 +22,8 @@ class DistributorController extends Controller
         ->get();
        // return   view("user.distributors", ["distributors"=>$distributors,"countries"=>$countries ,"products"=>$products] ); 
        return view ("user.distributors")->with ("distributors",$distributors);
-        
-
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,18 +43,26 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
-      
+  
         $request->validate([
             'name' => 'required',
+            'core_business'=>'required'
         ], [
             'name.required' => 'Name is required',
-         
         ]);
+      
+      $obj=  distributor::create($request->all());
+      if($obj)
+      {
+          return response()->json([
+              "statusCode"=>200,
+              "status"=>true,
+              "msg"=>"تم الحفظ بنجاح ",
+
+          ]); 
+      }
 
      
-        distributor::create($request->all());
-
-        return back()->with('success', 'your  request has  ben  send   successfully.');
 
     }
 

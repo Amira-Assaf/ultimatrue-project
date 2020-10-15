@@ -143,82 +143,87 @@
     </div>
 </section>
 <!--================Best Company Area =================-->
-<section class="best_company_area"style="background-color:#F8F8FF">
+<section class="best_company_area" style="background-color:#F8F8FF">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
-                <div class="b_companu_l_text">
+            <div class="col-md-12 m-auto " style="background-color:#fff;padding: 30px">
+                <div class="b_companu_l_text ">
                     <h4>Join our Distributors</h4>
                     <p>Lorem Ipsum is simply dummy text of the printing and<br />typesetting industry.</p>
                     <div class="comment_form_area">
 
-                        @if(Session::has('success'))
-                        <div class="alert alert-success">
-                            {{ Session::get('success') }}
-                            @php
-                                Session::forget('success');
-                            @endphp
-                        </div>
-                        @endif
-
-
+                   
                         <!--<h3>Distributor Form</h3>-->
-                        <form class="contact_us_form row"  method="POST"  action="{{ route('Distributor.store') }}"  id="contactForm" novalidate="novalidate">
+                        <form class="contact_us_form row"  method="POST"  action="{{ route('Distributor.store') }}"  id="distributor-form-request" novalidate="novalidate">
                             @csrf
-
                             <input  type="hidden" name="status_id"  value="1" >
-                            
                             <div class="form-group col-md-6">
-                                <label>Full Name</label>
+                                <label>Full Name</label>      
+                                <span class="text-danger d-block" id="name-error"> </span>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Full Name">
-
-                                @if ($errors->has('name'))
-                                <span class="text-danger">{{ $errors->first('name') }}</span>
-                                @endif
-
                             </div>
-
+                     
                             <div class="form-group col-md-6">
                                 <label>Company Owner's Name</label>
+                                <span class="text-danger d-block" id="owner_name-error"></span>
                                 <input type="text" class="form-control" id="owner_name" name="owner_name" placeholder="Company Owner's Name">
-
-                                @if ($errors->has('name'))
-                                <span class="text-danger">{{ $errors->first('owner_name') }}</span>
-                                @endif
+                              
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label>Commercial ID</label>
+                                
+                                <span class="text-danger" id="commercial_id-error"> </span>
+
                                 <input type="text" class="form-control" id="commercial_id" name="commercial_id" placeholder="Commercial ID">
+
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Tax ID</label>
+                                                                
+                                <span class="text-danger" id="tax_id-error"> </span>
                                 <input type="text" class="form-control" id="tax_id" name="tax_id" placeholder="Tax ID">
+
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label>City</label>
+                                                                   
+                                <span class="text-danger" id="City-error"> </span>
                                 <input type="text" class="form-control" id="City" name="City" placeholder="Your City">
+
                             </div>
 
                             <div class="form-group col-md-6">
                                 <label>Mobile Number</label>
+                                                                   
+                                <span class="text-danger" id="phone-error"> </span>
                                 <input type="text" class="form-control" id="phone" name="phone" placeholder="Your Mobile Number">
+
                             </div>
                             <div class="form-group col-md-12">
                                 <label>What is your core business?</label>
+                                                                   
+                                <span class="text-danger" id="core_business-error"> </span>
                                 <input type="text" class="form-control" id="core_business" name="core_business" placeholder="core business">
+
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Do you have branches? And where?</label>
+                                <span class="text-danger" id="branches-error"> </span>
                                 <input type="text" class="form-control" id="branches" name="branches" placeholder="Your Answer">
+
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Have your ever dealt with ultimatrue or not?</label>
+                                                                   
+                                <span class="text-danger" id="dealt-error"> </span>
                                 <input type="text" class="form-control" id="dealt" name="dealt" placeholder="Your Answer">
+
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="address">Address</label>
+                                <span class="text-danger" id="address-error"> </span>
                                 <textarea class="form-control"  name="address" placeholder="Your Address" style="max-height:70px"></textarea>
                             </div>
                             <div class="form-group col-md-12">
@@ -237,8 +242,49 @@
     </div>
 </section>
 <!--================End Best Company Area =================-->
+@endsection
 
+@section('scripts')
 
+<script>
+ $(".submit_btn").click(function (e) { 
+     e.preventDefault(); 
+  var data= $("#distributor-form-request").serialize(); 
+  $("#distributor-form-request .text-danger").text(""); 
+ $.ajax({
+        url: "{{ route('Distributor.store') }}",
+        type: "post",
+        data: data ,
+        success: function (response) {
+            
+            //grab the dialog instance using its parameter-less constructor then set multiple settings at once.
+                alertify.alert()
+                .setting({
+                    'label':'Saved',
+                    'title':"success",
+                    'message': response.msg ,
+                    'onok': function(){ alertify.success('successfuly');}
+                }).show();
 
+                $("#distributor-form-request input").val(""); 
+         
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            debugger
+            var  response= JSON.parse(jqXHR.responseText);
+             var errors=response.errors; 
+           $.each(errors, function (key, value) { 
+               $("#"+key +"-error").text(value[0])   
+             });
+
+        }
+    });
+
+         
+     
+ });
+ 
+</script>
     
 @endsection

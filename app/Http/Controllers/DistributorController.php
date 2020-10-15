@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \App\Models\distributor;
+use Illuminate\Support\Facades\App;
 
 class DistributorController extends Controller
 {
@@ -16,7 +18,9 @@ class DistributorController extends Controller
         //
         //$countries=["a","b"]; 
         //$products=["p1","p2"]; 
-        $distributors = \App\Models\distributor::all();
+        $distributors =distributor::where('active', 1)->where("status_id","3")
+        ->orderBy('name', 'desc')
+        ->get();
        // return   view("user.distributors", ["distributors"=>$distributors,"countries"=>$countries ,"products"=>$products] ); 
        return view ("user.distributors")->with ("distributors",$distributors);
         
@@ -41,11 +45,19 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      
+        $request->validate([
+            'name' => 'required',
+        ], [
+            'name.required' => 'Name is required',
+         
+        ]);
 
-        //echo  "saved"; 
-        \App\distributors::create($request->all());
-         return redirect ('/Distributor');
+     
+        distributor::create($request->all());
+
+        return back()->with('success', 'your  request has  ben  send   successfully.');
+
     }
 
     /**

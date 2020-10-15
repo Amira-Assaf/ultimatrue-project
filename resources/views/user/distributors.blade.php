@@ -1,11 +1,6 @@
 
 @extends("layouts.user.layout");
-
-
-
 @section('content')
-
-
 <section>
     <div style="background-image:url({{ asset('asset/img/bg-6.jpg') }});background-position:center center;margin-top:400px;">
         <div class="container">
@@ -156,48 +151,75 @@
                     <h4>Join our Distributors</h4>
                     <p>Lorem Ipsum is simply dummy text of the printing and<br />typesetting industry.</p>
                     <div class="comment_form_area">
+
+                        @if(Session::has('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                            @php
+                                Session::forget('success');
+                            @endphp
+                        </div>
+                        @endif
+
+
                         <!--<h3>Distributor Form</h3>-->
                         <form class="contact_us_form row"  method="POST"  action="{{ route('Distributor.store') }}"  id="contactForm" novalidate="novalidate">
                             @csrf
+
+                            <input  type="hidden" name="status_id"  value="1" >
+                            
                             <div class="form-group col-md-6">
                                 <label>Full Name</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Full Name">
+
+                                @if ($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                                @endif
+
                             </div>
+
                             <div class="form-group col-md-6">
                                 <label>Company Owner's Name</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Company Owner's Name">
+                                <input type="text" class="form-control" id="owner_name" name="owner_name" placeholder="Company Owner's Name">
+
+                                @if ($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('owner_name') }}</span>
+                                @endif
                             </div>
+
                             <div class="form-group col-md-6">
                                 <label>Commercial ID</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Commercial ID">
+                                <input type="text" class="form-control" id="commercial_id" name="commercial_id" placeholder="Commercial ID">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Tax ID</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Tax ID">
+                                <input type="text" class="form-control" id="tax_id" name="tax_id" placeholder="Tax ID">
                             </div>
+
                             <div class="form-group col-md-6">
                                 <label>City</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Your City">
+                                <input type="text" class="form-control" id="City" name="City" placeholder="Your City">
                             </div>
+
                             <div class="form-group col-md-6">
                                 <label>Mobile Number</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Your Mobile Number">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Your Mobile Number">
                             </div>
                             <div class="form-group col-md-12">
                                 <label>What is your core business?</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="core business">
+                                <input type="text" class="form-control" id="core_business" name="core_business" placeholder="core business">
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Do you have branches? And where?</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Your Answer">
+                                <input type="text" class="form-control" id="branches" name="branches" placeholder="Your Answer">
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Have your ever dealt with ultimatrue or not?</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="Your Answer">
+                                <input type="text" class="form-control" id="dealt" name="dealt" placeholder="Your Answer">
                             </div>
                             <div class="form-group col-md-12">
-                                <label>Address</label>
-                                <textarea class="form-control" placeholder="Your Address" style="max-height:70px"></textarea>
+                                <label for="address">Address</label>
+                                <textarea class="form-control"  name="address" placeholder="Your Address" style="max-height:70px"></textarea>
                             </div>
                             <div class="form-group col-md-12">
                                 <button type="submit" value="submit" class="btn submit_btn form-control">Submit</button>

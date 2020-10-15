@@ -167,7 +167,6 @@
                                 <label>Company Owner's Name</label>
                                 <span class="text-danger d-block" id="owner_name-error"></span>
                                 <input type="text" class="form-control" id="owner_name" name="owner_name" placeholder="Company Owner's Name">
-                              
                             </div>
 
                             <div class="form-group col-md-6">
@@ -255,8 +254,7 @@
         url: "{{ route('Distributor.store') }}",
         type: "post",
         data: data ,
-        success: function (response) {
-            
+        success: function (response) {        
             //grab the dialog instance using its parameter-less constructor then set multiple settings at once.
                 alertify.alert()
                 .setting({
@@ -265,10 +263,7 @@
                     'message': response.msg ,
                     'onok': function(){ alertify.success('successfuly');}
                 }).show();
-
                 $("#distributor-form-request input").val(""); 
-         
-
         },
         error: function(jqXHR, textStatus, errorThrown) {
             debugger

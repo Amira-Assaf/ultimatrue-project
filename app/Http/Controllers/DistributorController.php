@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \App\Models\distributor;
 use Illuminate\Support\Facades\App;
+use \App\Models\Country;
 
 class DistributorController extends Controller
 {
@@ -15,13 +16,12 @@ class DistributorController extends Controller
      */
     public function index()
     {
-        //$countries=["a","b"]; 
-        //$products=["p1","p2"]; 
+        $countries=Country::all(); 
         $distributors =distributor::where('active', 1)->where("status_id","3")
         ->orderBy('name', 'desc')
         ->get();
        // return   view("user.distributors", ["distributors"=>$distributors,"countries"=>$countries ,"products"=>$products] ); 
-       return view ("user.distributors")->with ("distributors",$distributors);
+       return view ("user.distributors",["distributors"=>$distributors,"countries"=>$countries]); 
     }
 
 
@@ -43,7 +43,6 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
-  
         $request->validate([
             'name' => 'required',
             'core_business'=>'required'
@@ -55,10 +54,7 @@ class DistributorController extends Controller
       if($obj)
       {
           return response()->json([
-              "statusCode"=>200,
-              "status"=>true,
               "msg"=>"تم الحفظ بنجاح ",
-
           ]); 
       }
 

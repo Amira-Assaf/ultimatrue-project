@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\App;
 use \App\Models\Country;
 use App\Models\Product;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB; 
 
 class DistributorController extends Controller
 {
@@ -55,8 +56,7 @@ class DistributorController extends Controller
         // Setup the validator
 $rules = array(
     'name' => 'required',
- 'core_business' => 'required',
- 'email' => 'required'
+ 'core_business' => 'required'
 
 );
 $validator = Validator::make($request->all(), $rules);
@@ -137,5 +137,30 @@ if ($validator->fails())
     public function destroy($id)
     {
         //
+    }
+
+      public function getAllDistributorByproductId($ProductId)
+    {
+        # code...
+        //  approved and  active 
+        if($ProductId =='all')
+        {
+            $DistributorsProduct = DB::table('distributors')
+            ->join('distributors_products', 'distributors.id', '=', 'distributors_products.distributor_id')
+            ->select('distributors.*', 'distributors_products.*', 'distributors.name')
+
+            ->get();
+        }else{
+            $DistributorsProduct = DB::table('distributors')
+            ->join('distributors_products', 'distributors.id', '=', 'distributors_products.distributor_id')
+            ->select('distributors.*', 'distributors_products.*', 'distributors.name')
+            ->where("product_id",$ProductId)
+            ->get();
+        }
+        
+
+
+        return  response()->json($DistributorsProduct); 
+
     }
 }

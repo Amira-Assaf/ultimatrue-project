@@ -96,18 +96,12 @@
                 <div class="row">
                     <div class="col-md-3 mb-3 dis-links">
                         <nav class="navbar navbar-expand-lg navbar-light">
-                            <ul class="navbar-nav mr-auto flex-column vertical-nav">
-                                <li class="nav-item dis-active"><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> All Distributors</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> Elevator Gearless Controller Boards</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> Simplex Elevator Controller Boards</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> Selective-Collective Elevator Controller Boards</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> Duplex Elevator Control Boards</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> Emergency Rescue Devices</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> Elevator Control Panels</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> Room Less Gearless Elevator Control Solution</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> Add Ons</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> Elevator Displays</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> RFID Access Control</a></li>
+                            <ul class="navbar-nav mr-auto flex-column vertical-nav products">
+                              
+                                <li class="nav-item dis-active"  data-id="all" ><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> All </a></li>
+                                @foreach ($Products as $product)
+                                <li class="nav-item "    data-id="{{$product->id}}"  ><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> {{$product->product_name}}</a></li>   
+                                @endforeach
                             </ul>
                         </nav>
                     </div>
@@ -137,54 +131,13 @@
                                     <button class="btn btn-outline-info mb-2" style="margin-left:35px">Join Our Distributors</button>
                                 </form>
                             </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="card dis-item">
-                                    <div class="card-header bg-info text-white">ABC Company</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title"><i class="fa fa-home"></i> Address: <span> 112 Salah Salem Nasr City</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-building"></i> City: <span> Cairo, Egypt</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-address-book"></i> Contact: <span> Eng Ahmed Muhammad</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-phone"> Phone: <span> 0100 123 4567</span></i></h5>
-                                        <h5 class="card-title"><a href="#"><i class="fa fa-map-marker"></i> Get Location</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="card dis-item">
-                                    <div class="card-header bg-info text-white">ABC Company</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title"><i class="fa fa-home"></i> Address: <span> 112 Salah Salem Nasr City</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-building"></i> City: <span> Cairo, Egypt</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-address-book"></i> Contact: <span> Eng Ahmed Muhammad</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-phone"> Phone: <span> 0100 123 4567</span></i></h5>
-                                        <h5 class="card-title"><a href="#"><i class="fa fa-map-marker"></i> Get Location</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="card dis-item">
-                                    <div class="card-header bg-info text-white">ABC Company</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title"><i class="fa fa-home"></i> Address: <span> 112 Salah Salem Nasr City</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-building"></i> City: <span> Cairo, Egypt</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-address-book"></i> Contact: <span> Eng Ahmed Muhammad</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-phone"> Phone: <span> 0100 123 4567</span></i></h5>
-                                        <h5 class="card-title"><a href="#"><i class="fa fa-map-marker"></i> Get Location</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="card dis-item">
-                                    <div class="card-header bg-info text-white">ABC Company</div>
-                                    <div class="card-body">
-                                        <h5 class="card-title"><i class="fa fa-home"></i> Address: <span> 112 Salah Salem Nasr City</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-building"></i> City: <span> Cairo, Egypt</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-address-book"></i> Contact: <span> Eng Ahmed Muhammad</span></h5>
-                                        <h5 class="card-title"><i class="fa fa-phone"> Phone: <span> 0100 123 4567</span></i></h5>
-                                        <h5 class="card-title"><a href="#"><i class="fa fa-map-marker"></i> Get Location</a></h5>
-                                    </div>
-                                </div>
-                            </div>
+
+                        </div>
+                        <div class="row  Distributor-data">
+
+                              {{--  foreach  --}}
+                              
+                
                         </div>
                     </div>
                 </div>
@@ -348,7 +301,10 @@
                     success: function(response) {
                         debugger; 
                         if (response.status == true) {
+                            
                             alert("done"); 
+
+
                             $("#distributor-form-request input").val("");
                         } else {
                             $.each(response.errors, function(key, value) {
@@ -364,7 +320,57 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+       
+
+       $(".products li").click(function(e){
+          e.preventDefault(); 
+           var id= $(this).attr("data-id"); 
+           $(".products li").removeClass("dis-active");
+            $(this).addClass("dis-active"); 
+            getAllDistributorByproductId(id); 
+       }); 
+       
+
+       getAllDistributorByproductId('all');
+
+       
         });
+        
+
+
+        function getAllDistributorByproductId (id){
+            $.ajax({
+                    url: "Distributor/getAllDistributorByproductId/"+id,
+                    type: "get",
+                    dataType: "json",
+                    success:function(res){
+                 $(".Distributor-data").html("");
+
+                        debugger;
+                        var text=""; 
+                        $.each(res,function(index,item){
+                     text+=` <div class="col-md-6 col-sm-6">
+                                <div class="card dis-item">
+                                    <div class="card-header bg-info text-white">ABC Company</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title"><i class="fa fa-home"></i> Address: <span> 112 Salah Salem Nasr City</span></h5>
+                                        <h5 class="card-title"><i class="fa fa-building"></i> City: <span> Cairo, Egypt</span></h5>
+                                        <h5 class="card-title"><i class="fa fa-address-book"></i> Contact: <span> Eng Ahmed Muhammad</span></h5>
+                                        <h5 class="card-title"><i class="fa fa-phone"> Phone: <span> 0100 123 4567</span></i></h5>
+                                        <h5 class="card-title"><a href="#"><i class="fa fa-map-marker"></i> Get Location</a></h5>
+                                    </div>
+                                </div>
+                               </div>`
+
+                        }) ;
+                        $(".Distributor-data").html(text);
+
+                    }
+                   
+                });
+
+        }
+
 
     </script>
 @endsection

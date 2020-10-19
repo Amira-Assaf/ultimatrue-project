@@ -20,9 +20,19 @@ Route::get('/', function () {
 });
 
 Route::get('/Distributor/fromRequest',[DistributorController::class, 'fromRequest'])->name("Distributor.fromRequest"); 
-Route::resource('Distributor', DistributorController::class);
-Route::get('/lookup/getCitiesByCountryId/{countryId}',[lookupController::class, 'getCitiesByCountryId']); 
 
+Route::get('/lookup/getCitiesByCountryId/{countryId}',[lookupController::class, 'getCitiesByCountryId']); 
+// ---------------------------get All distruboter  
+Route::get('Distributor/getAllDistributorByproductId/{ProductId}',[DistributorController::class, 'getAllDistributorByproductId']); 
+
+
+
+
+//
+
+
+
+Route::resource('Distributor', DistributorController::class);
 
 
 

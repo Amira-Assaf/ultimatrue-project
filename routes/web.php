@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DistributorController;
+use App\Http\Controllers\lookupController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,11 @@ Route::get('/', function () {
 
 Route::get('/Distributor/fromRequest',[DistributorController::class, 'fromRequest'])->name("Distributor.fromRequest"); 
 Route::resource('Distributor', DistributorController::class);
+Route::get('/lookup/getCitiesByCountryId/{countryId}',[lookupController::class, 'getCitiesByCountryId']); 
+
+
+
+
 
 
 

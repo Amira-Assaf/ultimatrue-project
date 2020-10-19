@@ -27,7 +27,8 @@ class distributor extends Model
     'notes',
     'status_id',
     'branches',
-    'dealt'  ];  
+    'dealt' ,'country_id',
+    'city_id' ];  
 
     
 

@@ -4,47 +4,24 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" href="imgs/logo1.png" type="image/x-icon" />
+	<link rel="icon" href="{{asset('asset/img/logo1.png')}}" type="image/x-icon" />
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <title>Ultimatrue</title>
 
-        <!-- Icon css link -->
-        <link href="{{ asset('asset/css/font-awesome.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('asset/css/materialdesignicons.min.css') }}" rel="stylesheet">
         
-        <!-- Bootstrap -->
-        <link href="{{ asset('asset/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('asset/styles/bootstrap-4.1.2/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('asset/plugins/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet">
         
-        <!-- Rev slider css -->
-        <link href="{{ asset('asset/vendors/revolution/css/settings.css') }}" rel="stylesheet">
-        <link href="{{ asset('asset/vendors/revolution/css/layers.css') }}" rel="stylesheet">
-        <link href="{{ asset('asset/vendors/revolution/css/navigation.css') }}" rel="stylesheet">
-        <link href="{{ asset('asset/vendors/animate-css/animate.css') }}" rel="stylesheet">
-        <link href="{{ asset('asset/vendors/owl-carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-		<link href="{{ asset('asset/vendors/flex-slider/flexslider.css') }}" rel="stylesheet">
-		<link href="{{ asset('asset/vendors/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
-        
-        <!-- Extra plugin css -->
-        <link href="{{ asset('asset/css/style.css') }}" rel="stylesheet">
-		<link href="{{ asset('asset/css/custom.css') }}" rel="stylesheet">
-        <link href="{{ asset('asset/css/responsive.css') }}" rel="stylesheet">
-
       
-<!-- CSS  alertifyjs-->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-<!-- Default theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
-<!-- Semantic UI theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
-<!-- Bootstrap theme -->
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+        <link href="{{ asset('asset/plugins/colorbox/colorbox.css') }}" rel="stylesheet">
+        
+        
+        <link href="{{ asset('asset/styles/about.css') }}" rel="stylesheet">
+        <link href="{{ asset('asset/styles/about_responsive.css') }}" rel="stylesheet">
+        
 
-    
-	
 	</head>
     <body>
-       
-       
 		<!--================Header Area =================-->
 		<header class="main_header_area">
 			<div class="header_top_area">
@@ -108,41 +85,21 @@
 			</div>
 		</header>
 		<!--================Header Area =================-->
-
         @yield('content')
-
-        
-        
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="{{ asset('asset/js/jquery-2.2.4.js') }}"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="{{ asset('asset/js/bootstrap.min.js') }}"></script>
-        <!-- Rev slider js -->
-        <script src="{{ asset('asset/vendors/revolution/js/jquery.themepunch.tools.min.js') }}"></script>
-        <script src="{{ asset('asset/vendors/revolution/js/jquery.themepunch.revolution.min.js') }}"></script>
-        <script src="{{ asset('asset/vendors/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
-        <script src="{{ asset('asset/vendors/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
-        <script src="{{ asset('asset/vendors/revolution/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
-        <script src="{{ asset('asset/vendors/revolution/js/extensions/revolution.extension.navigation.min.js') }}"></script>
-        
-        <script src="{{ asset('asset/vendors/owl-carousel/owl.carousel.min.js') }}"></script>
-        <script src="{{ asset('asset/vendors/isotope/imagesloaded.pkgd.min.js') }}"></script>
-        <script src="{{ asset('asset/vendors/isotope/isotope.pkgd.min.js') }}"></script>
-        <script src="{{ asset('asset/vendors/magnific-popup/jquery.magnific-popup.min.js') }}"></script>
-        <script src="{{ asset('asset/vendors/counterup/waypoints.min.js') }}"></script>
-        <script src="{{ asset('asset/vendors/counterup/jquery.counterup.min.js') }}"></script>
-        <script src="{{ asset('asset/vendors/flex-slider/jquery.flexslider-min.js') }}"></script>
-        
-        <!--gmaps Js-->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-        <script src="{{ asset('asset/js/gmaps.min.js') }}"></script>
-        
-        <script src="{{ asset('asset/js/theme.js') }}"></script>
-
-
-		<!-- JavaScript -->
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-
+		<script src="{{ asset('asset/js/jquery-3.3.1.min.js') }}"></script>
+		<script src="{{ asset('asset/styles/bootstrap-4.1.2/popper.js') }}"></script>
+		<script src="{{ asset('asset/styles/bootstrap-4.1.2/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('asset/plugins/greensock/TweenMax.min.js') }}"></script>
+		<script src="{{ asset('asset/plugins/greensock/TimelineMax.min.js') }}"></script>
+		<script src="{{ asset('asset/plugins/scrollmagic/ScrollMagic.min.js') }}"></script>
+		<script src="{{ asset('asset/plugins/greensock/animation.gsap.min.js') }}"></script>
+		<script src="{{ asset('asset/plugins/greensock/ScrollToPlugin.min.js') }}"></script>
+		<script src="{{ asset('asset/plugins/colorbox/jquery.colorbox-min.js') }}"></script>
+		<script src="{{ asset('asset/plugins/easing/easing.js') }}"></script>
+		<script src="{{ asset('asset/plugins/progressbar/progressbar.min.js') }}"></script>
+		<script src="{{ asset('asset/plugins/parallax-js-master/parallax.min.js') }}"></script>
+		<script src="{{ asset('asset/js/about.js') }}"></script>
 
 		@yield('scripts')
 		

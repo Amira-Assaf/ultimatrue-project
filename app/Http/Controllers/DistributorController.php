@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use \App\Models\distributor;
 use Illuminate\Support\Facades\App;
 use \App\Models\Country;
+use App\Models\Product;
+use Illuminate\Support\Facades\Validator;
 
 class DistributorController extends Controller
 {
@@ -20,8 +22,14 @@ class DistributorController extends Controller
         $distributors =distributor::where('active', 1)->where("status_id","3")
         ->orderBy('name', 'desc')
         ->get();
-       // return   view("user.distributors", ["distributors"=>$distributors,"countries"=>$countries ,"products"=>$products] ); 
-       return view ("user.distributors",["distributors"=>$distributors,"countries"=>$countries]); 
+        $Products=Product::all(); 
+      
+       return view ("user.distributors",
+       ["distributors"=>$distributors
+       ,"countries"=>$countries,
+       "Products"=>$Products
+       ]
+    ); 
     }
 
 
@@ -43,19 +51,43 @@ class DistributorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'core_business'=>'required'
-        ], [
-            'name.required' => 'Name is required',
-        ]);
-      
+
+        // Setup the validator
+$rules = array(
+    'name' => 'required',
+ 'core_business' => 'required',
+ 'email' => 'required'
+
+);
+$validator = Validator::make($request->all(), $rules);
+
+// Validate the input and return correct response
+if ($validator->fails())
+{
+    return response()-> json(
+        array(
+        'status' => false,
+        'errors' => $validator->getMessageBag()->toArray(),
+        "amira"=>"mrmar"
+
+    ), 200); 
+}
+
       $obj=  distributor::create($request->all());
       if($obj)
       {
           return response()->json([
               "msg"=>"تم الحفظ بنجاح ",
+              "statusCode"=>200,
+              'status' => true,
           ]); 
+      }
+      else{
+        return response()->json([
+            "msg"=>"لم يتم الحفظ الرجاء المحاولة مجددا    ",
+            "statusCode"=>200,
+            'status' => false,
+        ]); 
       }
 
      

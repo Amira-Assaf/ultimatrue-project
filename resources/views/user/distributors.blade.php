@@ -3,54 +3,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     
-    <div class="super_container">
-
-        <!--================ Header =================-->
-        <header class="header trans_400">
-
-            <!-- Logo -->
-            <div class="logo">
-                <a href="#"><img src="{{asset('asset/img/logo1.png')}}" alt=""></a>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="header_content d-flex flex-row align-items-center justify-content-start trans_400">
-                            <nav class="main_nav">
-                                <ul class="d-flex flex-row align-items-start justify-content-start">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Distributors</a></li>
-                                    <li><a href="#">Contact</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Submit & Social -->
-            <div class="header_right d-flex flex-row align-items-start justify-content-start">
-
-                <!-- Submit -->
-                <div class="submit"><a href="#">Join Our Distributors</a></div>
-
-                <!-- Social -->
-                <div class="social">
-                    <ul class="d-flex flex-row align-items-start justify-content-start">
-                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                        <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-                    </ul>
-                </div>
-
-                <!-- Hamburger -->
-                <div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
-
-            </div>
-        </header>
-        <!--================ /Header =================-->
+    
 
         <!--================ Menu Mobile =================-->
         <div class="menu">
@@ -214,12 +167,12 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label>Mobile Number</label>
+                                        <label>Phone Number</label>
                                         <span class="text-danger" id="phone-error"> </span>
                                         <input type="text" class="form-control" id="phone" name="phone" placeholder="Your Mobile Number">
 
                                     </div>
-                                    <div class="form-group col-md-12">
+                                    <div class="form-group col-md-6">
                                         <label>What is your core business?</label>
 
                                         <span class="text-danger" id="core_business-error"> </span>
@@ -245,7 +198,7 @@
                                         <textarea class="form-control" name="address" placeholder="Your Address" style="max-height:70px"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <button type="submit" value="submit" class="btn submit_btn form-control">Submit</button>
+                                        <button type="submit" value="submit" class="form-control btn btn-info mb-2 text-white">Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -260,7 +213,7 @@
             </div>
         </section>
         <!--================/Join Our Distributors =================-->
-    </div>
+    
 
   
     
@@ -351,7 +304,7 @@
                         $.each(res,function(index,item){
                      text+=` <div class="col-md-6 col-sm-6">
                                 <div class="card dis-item">
-                                    <div class="card-header bg-info text-white">ABC Company</div>
+                                    <div class="card-header bg-info text-white">${item.name}</div>
                                     <div class="card-body">
                                         <h5 class="card-title"><i class="fa fa-home"></i> Address: <span> 112 Salah Salem Nasr City</span></h5>
                                         <h5 class="card-title"><i class="fa fa-building"></i> City: <span> Cairo, Egypt</span></h5>

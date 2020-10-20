@@ -19,6 +19,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('admin-all-distributors', function () {
+    return view('admin\all-distributors');
+});
+
+Route::get('admin-add-distributor', function () {
+    return view('admin\add-distributor');
+});
+
+Route::get('admin-edit-distributor', function () {
+    return view('admin\edit-distributor');
+});
+
 Route::get('/Distributor/fromRequest',[DistributorController::class, 'fromRequest'])->name("Distributor.fromRequest"); 
 
 Route::get('/lookup/getCitiesByCountryId/{countryId}',[lookupController::class, 'getCitiesByCountryId']); 

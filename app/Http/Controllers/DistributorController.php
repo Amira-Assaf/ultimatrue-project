@@ -50,49 +50,76 @@ class DistributorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store2(Request $request)
     {
+//         // Setup the validator
+// $rules = array(
+//     'name' => 'required',
+//  'core_business' => 'required'
 
-        // Setup the validator
-$rules = array(
-    'name' => 'required',
- 'core_business' => 'required'
+// );
+// $validator = Validator::make($request->all(), $rules);
 
-);
-$validator = Validator::make($request->all(), $rules);
+// // Validate the input and return correct response
+// if ($validator->fails())
+// {
+//     return response()-> json(
+//         array(
+//         'status' => false,
+//         'errors' => $validator->getMessageBag()->toArray(),
+//         "amira"=>"mrmar"
 
-// Validate the input and return correct response
-if ($validator->fails())
-{
-    return response()-> json(
-        array(
-        'status' => false,
-        'errors' => $validator->getMessageBag()->toArray(),
-        "amira"=>"mrmar"
+//     ), 200); 
+// }
 
-    ), 200); 
-}
-
-      $obj=  distributor::create($request->all());
-      if($obj)
-      {
-          return response()->json([
-              "msg"=>"تم الحفظ بنجاح ",
-              "statusCode"=>200,
-              'status' => true,
-          ]); 
-      }
-      else{
-        return response()->json([
-            "msg"=>"لم يتم الحفظ الرجاء المحاولة مجددا    ",
-            "statusCode"=>200,
-            'status' => false,
-        ]); 
-      }
+//       $obj=  distributor::create($request->all());
+//       if($obj)
+//       {
+//           return response()->json([
+//               "msg"=>"sAVED",
+//               "statusCode"=>200,
+//               'status' => true,
+//           ]); 
+//       }
+//       else{
+//         return response()->json([
+//             "msg"=>"لم يتم الحفظ الرجاء المحاولة مجددا    ",
+//             "statusCode"=>200,
+//             'status' => false,
+//         ]); 
+//       }
 
      
 
     }
+    public function store(Request $request)
+    {
+        // Setup the validator
+// $rules = array(
+//     'name' => 'required',
+//  'core_business' => 'required'
+
+// );
+// $validator = Validator::make($request->all(), $rules);
+
+$validatedData = $request->validate([
+    'name' => 'required',
+    'core_business' => 'required',
+]);
+
+// Validate the input and return correct response
+
+
+      $obj=  distributor::create($request->all());
+      
+    //   return redirect('Distributor')->with('status', 'Saved'); 
+    // return redirect()->action(
+    //     [DistributorController::class, 'index']
+    // );
+    // return Redirect::back()->with('msg', 'Saved');
+    return redirect()->back()->with('success', 'Saved');   
+    }
+
 
     /**
      * Display the specified resource.

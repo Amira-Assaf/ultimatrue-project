@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DistributorController;
 use App\Http\Controllers\lookupController; 
+// use App\Http\Controllers\adminDistributorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +20,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin-all-distributors', function () {
-    return view('admin\all-distributors');
+Route::get('admindistributors', function () {
+    return view('admin.all-distributors');
 });
+
+Route::get('/AdminDistributor/fromRequest',[adminDistributorController::class, 'fromRequest'])->name("Distributor.fromRequest"); 
+Route::get('/admin/distributors','App\Http\Controllers\adminDistributorController@index');
+
 
 Route::get('admin-add-distributor', function () {
-    return view('admin\add-distributor');
+    return view('admin.add-distributor');
 });
 
-Route::get('admin-edit-distributor', function () {
-    return view('admin\edit-distributor');
+Route::get('admin/edit-distributor', function () {
+    return view('admin.edit-distributor');
 });
 
 Route::get('/Distributor/fromRequest',[DistributorController::class, 'fromRequest'])->name("Distributor.fromRequest"); 
@@ -37,13 +42,7 @@ Route::get('/lookup/getCitiesByCountryId/{countryId}',[lookupController::class, 
 // ---------------------------get All distruboter  
 Route::get('Distributor/getAllDistributorByproductId/{ProductId}',[DistributorController::class, 'getAllDistributorByproductId']); 
 
-
-
-
-//
-
-
-
+// ---------------------------All distruboter User Design
 Route::resource('Distributor', DistributorController::class);
 
 

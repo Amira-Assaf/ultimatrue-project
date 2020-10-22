@@ -1,5 +1,7 @@
 @extends("layouts.admin.layout")
 @section('admin-content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
@@ -126,26 +128,29 @@
                                     <th>Company Owner's Name</th>
                                     <th>Commercial ID</th>
                                     <th>Tax ID</th>
-                                    <th>City</th>
                                     <th>Contact</th>
                                     <th>Mobile Number</th>
                                     <th>Setting</th>
                                 </tr>
+                                
+                                @foreach ($distributors as $distributor)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Ahmed Ali</td>
-                                    <td>Elsayed Abdel Rahman</td>
-                                    <td>152/6587</td>
-                                    <td>12-120-520</td>
-                                    <td>Cairo</td>
-                                    <td>Khaled Zaky</td>
-                                    <td>0100 123 4567</td>
+                                    <td>{{ $distributor->id }}</td>
+                                    <td>{{ $distributor->name }}</td>
+                                    <td>{{ $distributor->owner_name }}</td>
+                                    <td>{{ $distributor->commercial_id }}</td>
+                                    <td>{{ $distributor->tax_id }}</td>
+                                    <td>{{ $distributor->contact_person }}</td>
+                                    <td>{{ $distributor->mobile }}</td>
+                                    
                                     <td>
-                                        <button data-toggle="modal" data-target="#vw" title="View" class="pd-setting-ed"><i class="fa fa-eye" aria-hidden="true"></i></button>
-                                        <button onclick="window.location.href='edit-distributors.html';" title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                        <button id="view" data-toggle="modal" data-target="#vw" title="View" class="pd-setting-ed" ><i class="fa fa-eye" aria-hidden="true"></i></button>
+                                        <button href="<?= url('/Distributor'); ?>"  onclick="window.location='{{ url("/admin/edit-distributor") }}'"  title="Edit" class="pd-setting-ed"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                         <button data-toggle="modal" data-target="#del" title="Trash" class="pd-setting-ed"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
                                     </td>
                                 </tr>
+                                @endforeach
+                                
                             </table>
                         </div>
                         <div class="custom-pagination">
@@ -333,3 +338,32 @@
     <!--/Delete Distributor-->
     <!--/Modal-->
 </div>
+
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+
+            $("#country_id").on("change", function(e) {
+                $.ajax({
+                    url: "/lookup/getCitiesByCountryId/" + $("#country_id").val(),
+                    type: "get",
+                    dataType: "json",
+                    success: function(response) {
+                        var text = "";
+                        $.each(response, function(index, item) {
+                            text += `<option value="${item.id}">  ${item.city_name} </option>`
+                        });
+                        $("#city_id").html(text);
+                    }
+
+                })
+
+            });
+
+        }
+
+
+    </script>
+@endsection

@@ -51,7 +51,7 @@
                         <nav class="navbar navbar-expand-lg navbar-light">
                             <ul class="navbar-nav mr-auto flex-column vertical-nav products">
                               
-                                <li class="nav-item dis-active"  data-id="all" ><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> All </a></li>
+                                <li class="nav-item dis-active"  data-id="all" ><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> All Distributors</a></li>
                                 @foreach ($Products as $product)
                                 <li class="nav-item "    data-id="{{$product->id}}"  ><a class="nav-link" href="#"><i class="fa fa-angle-double-right"></i> {{$product->product_name}}</a></li>   
                                 @endforeach
@@ -116,6 +116,16 @@
                         <div class="b_companu_l_text">
                             <div class="comment_form_area">
                                 <!--<h3>Distributor Form</h3>-->
+                                @if (\Session::has('success'))
+    <div class="alert alert-success">
+        <ul>
+            <li>{!! \Session::get('success') !!}</li>
+        </ul>
+    </div>
+@endif
+@if($errors->any())
+<h4>{{$errors->first()}}</h4>
+@endif
                                 <form class="contact_us_form row form" method="POST" action="{{ route('Distributor.store') }}" id="distributor-form-request" novalidate="novalidate">
 
                                     {!! csrf_field() !!}
@@ -125,6 +135,7 @@
                                         <label>Full Name</label>
                                         <input type="text" class="form-control" id="name" name="name" placeholder="Full Name">
                                         <span class="text-danger d-block" id="name-error"> </span>
+                                        
                                     </div>
 
                                     <div class="form-group col-md-6">
@@ -241,30 +252,33 @@
             });
 
 
-            $(".submit_btn").click(function(e) {
+            $(".submit_btn2").click(function(e) {
                 e.preventDefault();
                 var mydata = $('#distributor-form-request').serialize(); 
                $("#distributor-form-request  .text-danger").text("");
-
+               debugger;
                 $.ajax({
                     url: "{{ route('Distributor.store') }}",
                     type: "post",
                     dataType: "json",
+                    // contentType: "application/json",
                     data: mydata,
                     success: function(response) {
                         debugger; 
-                        if (response.status == true) {
+                        alert (response);
+                        // if (response.status == true) {
                             
-                            alert("done"); 
+                        //     alert("done"); 
 
 
-                            $("#distributor-form-request input").val("");
-                        } else {
-                            $.each(response.errors, function(key, value) {
-                                $("#" + key + "-error").text(value[0]); 
-                                //$("#" + key).addClass("is-invalid");
-                            });
-                        }
+                        //     $("#distributor-form-request input").val("");
+                        // } 
+                        // else {
+                        //     $.each(response.errors, function(key, value) {
+                        //         $("#" + key + "-error").text(value[0]); 
+                        //         //$("#" + key).addClass("is-invalid");
+                        //     });
+                        // }
                     }
                 });
             });
